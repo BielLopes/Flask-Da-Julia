@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}{{ super() }} - Login{% endblock %}
+{% block content %}
+<div class="col-md-8 col-md-offset-2">
+  <h2>Login</h2>
+  <form action="" method="POST">
+    {{ form_login.csrf_token }}
+    <div class="form-group">
+      <label>Username</label>
+      {{ form_login.username(class="form-control",
+      placeholder="Nome De Usuário") }}
+      {% if form_login.errors.username %}
+        <div class="alert alert-danger" role="alert">
+          <ul>
+            {% for e in form_login.errors.username %}
+              <li>{{ e }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <label>Pasword</label>
+      {{ form_login.pasword(class="form-control") }}
+      {% if form_login.errors.pasword %}
+        <div class="alert alert-danger" role="alert">
+          <ul>
+            {% for e in form_login.errors.pasword %}
+              <li>{{ e }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+    <div class="checkbox">
+      <label>
+        {{ form_login.remember_me }} Remember me
+      </label>
+      <br/>
+      <br/>
+      <button type="submit" class="btn btn-default" name="button">Login</button>
+    </div>
+  </form>
+  </div>
+{% endblock %}
